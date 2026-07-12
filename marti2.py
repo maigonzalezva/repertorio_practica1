@@ -38,3 +38,16 @@ def pergaminos_escuela(escuela):
            total_pergaminos += reservas[codigo][1]
    print(f"El total de pergaminos disponibles es: {total_pergaminos}")
 
+
+def busqueda_de_precio(p_min, p_max):
+    resultado = []
+    for codigo, datos in reservas.items():
+        if datos[0] >= p_min and datos[0] <= p_max and datos[1] != 0:
+                resultado.append(f"{hechizos[codigo][0]}--{codigo}")
+    resultado.sorf
+    
+    if len(resultado) == 0:
+        print("No hay hechizos en ese rango de precios")
+    else:
+        print(f"Los hechizos encontrados son: {resultado}")
+

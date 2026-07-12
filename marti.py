@@ -52,3 +52,8 @@ print(resultado)
     except ValueError:
        print("Ingrese un numero")
        exit()
+
+#en while
+precio_min = int(input("Ingrese un precio minimo a pagar: "))
+        precio_max = int(input("Ingrese un precio maximo a pagar: "))
+        busqueda_de_precio(precio_min, precio_max)
