@@ -12,3 +12,4 @@ duracion = "1000"
     
 resultado = validacion_duracion(duracion)
 print(resultado)
+
