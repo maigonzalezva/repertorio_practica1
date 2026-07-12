@@ -8,7 +8,7 @@ def validacion_duracion(duracion):
     except ValueError:
         return False
     
-duracion = "-10"
+duracion = "100"
     
 resultado = validacion_duracion(duracion)
 print(resultado)
