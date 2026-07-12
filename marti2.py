@@ -1,15 +1,22 @@
-def validacion_duracion(duracion):
-    try:
-        duracion = int(duracion)
-        if duracion > 0:
-            return True
-        else:
-            return False
-    except ValueError:
-        return False
-    
-duracion = "1000"
-    
-resultado = validacion_duracion(duracion)
-print(resultado)
+#Grimorios
+
+#Hechizos = Nombre, escuela, poder. rareza, es_prohibido, creador.
+hechizos = {
+    'H001': ['Llamarada Solar', 'elemental', 5, 'C', False, 'Ignus el Ardiente'],
+    'H002': ['Escudo de Escarcha', 'elemental', 3, 'C', False, 'Dama Fenwick'],
+    'H003': ['Rayo Astral', 'arcana', 7, 'R', False, 'Magíster Orin'],
+    'H004': ['Cadena de Almas', 'oscura', 9, 'L', True, 'El Innombrable'],
+    'H005': ['Portal Menor', 'arcana', 4, 'R', False, 'Selene Valdour'],     'H006': ['Toque Vampírico', 'oscura', 6, 'R', True, 'Mordath'],
+}
+
+#Reservas= Precio, stock
+reservas = {     
+    'H001': [120, 8],     
+    'H002': [90, 0],
+    'H003': [340, 3],
+    'H004': [999, 2],
+    'H005': [210, 5],
+    'H006': [450, 4],
+
+}
 
