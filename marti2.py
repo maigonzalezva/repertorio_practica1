@@ -64,8 +64,75 @@ def actualizar_precio(codigo, nuevo_precio):
     else:
         return False
     
+def agregar_hechizo_codigo(codigo):
+    if codigo.strip() == "":
+        return False
+    if (buscar_codigo(codigo)):
+        return False
+    
+    return True
+
+def agregar_hechizo_nombre(nombre):
+    if nombre.strip() == "":
+        return False
+    else: 
+        return True
+    
+def agregar_hechizo_nombre_escuela(escuela):
+    escuela = escuela.lower()
+    if escuela == "elemental" or escuela == "arcana" or escuela == "oscura":
+        return True
+    else:
+        return False
+
+def agregar_hechizo_poder(poder):
+    if poder > 0:
+        return True
+    else:
+        return False
+
+def agregar_hechizo_rareza(rareza):
+    if rareza.upper() in ["C", "R", "L"]:
+        return True
+    else:
+        return False
+
+def agregar_hechizo_es_prohibido(es_prohibido):
+    if es_prohibido == "s":
+        return True
+    else:
+        if es_prohibido == "n":
+         return False
+
+def agregar_hechizo_creador(creador):
+    if creador.strip() == "":
+        return False
+    return True
+
+def agregar_hechizo_precio(precio_nuevo):
+    try:
+        if int(precio_nuevo) > 0:
+            return True
+        else:
+            return False
+
+    except ValueError:
+        return False
+
+def agregar_hechizo_stock(stock_nuevo):
+    try:
+        if int(stock_nuevo) >= 0: 
+            return True
+        else: 
+            return False
+    except ValueError:
+        return False
 
 
+def agregar_hechizo_completo(codigo, nombre, escuela , poder, rareza, es_prohibido,creador, precio_nuevo, stock_nuevo):
+    if buscar_codigo(codigo):
+        return False
 
-
-
+    hechizos[codigo] = [nombre, escuela, int(poder), rareza, es_prohibido, creador]
+    reservas[codigo] = [int(precio_nuevo), int(stock_nuevo)]
+    return True
