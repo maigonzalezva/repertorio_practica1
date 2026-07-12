@@ -20,3 +20,24 @@ reservas = {
 
 }
 
+def mostrar_menu():
+    print('''========= GRIMORIO ASTRALIS =========
+            1.	Pergaminos por escuela de magia
+            2.	Búsqueda de hechizos por rango de precio
+            3.	Actualizar precio de hechizo
+            4.	Agregar hechizo
+            5.	Eliminar hechizo
+            6.	Salir
+            =====================================
+            ''')
+    try:
+     opcion = int(input("Ingrese una opción: "))
+     if opcion <=0 or opcion >6:
+        return opcion
+     else:
+        print("Ingrese un numero entre el 1 y el 6")     
+        exit()
+    except ValueError:
+       print("Ingrese un numero")
+       exit()
+
