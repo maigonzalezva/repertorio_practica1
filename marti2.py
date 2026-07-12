@@ -136,3 +136,11 @@ def agregar_hechizo_completo(codigo, nombre, escuela , poder, rareza, es_prohibi
     hechizos[codigo] = [nombre, escuela, int(poder), rareza, es_prohibido, creador]
     reservas[codigo] = [int(precio_nuevo), int(stock_nuevo)]
     return True
+
+def eliminar_hechizo(codigo):
+    if buscar_codigo == True:
+        reservas.pop(codigo)
+        hechizos.pop(codigo)
+        return True
+    else:
+        return False
