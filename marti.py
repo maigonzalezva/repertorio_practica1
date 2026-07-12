@@ -41,3 +41,14 @@ duracion = "1000"
 resultado = validacion_duracion(duracion)
 print(resultado)
 
+#ejercico opcion 1
+    try:
+     opcion = int(input("Ingrese una opción: "))
+     if opcion <=0 or opcion >6:
+        return opcion
+     else:
+        print("Ingrese un numero entre el 1 y el 6")     
+        exit()
+    except ValueError:
+       print("Ingrese un numero")
+       exit()

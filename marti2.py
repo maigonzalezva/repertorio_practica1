@@ -30,14 +30,11 @@ def mostrar_menu():
             6.	Salir
             =====================================
             ''')
-    try:
-     opcion = int(input("Ingrese una opción: "))
-     if opcion <=0 or opcion >6:
-        return opcion
-     else:
-        print("Ingrese un numero entre el 1 y el 6")     
-        exit()
-    except ValueError:
-       print("Ingrese un numero")
-       exit()
+
+def pergaminos_escuela(escuela):
+   total_pergaminos = 0
+   for codigo, datos in hechizos.items():
+       if datos[1] == escuela.lower():
+           total_pergaminos += reservas[codigo][1]
+   print(f"El total de pergaminos disponibles es: {total_pergaminos}")
 
