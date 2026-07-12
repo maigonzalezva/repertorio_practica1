@@ -44,10 +44,28 @@ def busqueda_de_precio(p_min, p_max):
     for codigo, datos in reservas.items():
         if datos[0] >= p_min and datos[0] <= p_max and datos[1] != 0:
                 resultado.append(f"{hechizos[codigo][0]}--{codigo}")
-    resultado.sorf
+    resultado.sort()
     
     if len(resultado) == 0:
         print("No hay hechizos en ese rango de precios")
     else:
         print(f"Los hechizos encontrados son: {resultado}")
+
+
+def buscar_codigo(codigo):
+    if codigo.upper() in reservas:
+        return True
+    return False
+        
+def actualizar_precio(codigo, nuevo_precio):
+    if buscar_codigo(codigo.upper()):
+        reservas[codigo.upper()][0] = nuevo_precio
+        return True
+    else:
+        return False
+    
+
+
+
+
 
