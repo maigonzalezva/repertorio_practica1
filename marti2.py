@@ -117,7 +117,7 @@ def agregar_hechizo_es_prohibido(es_prohibido):
     else:
         if es_prohibido == "n":
          return False
-
+    return None
 def agregar_hechizo_creador(creador):
     if creador.strip() == "":
         return False
@@ -175,6 +175,7 @@ while True:
              p_max = int(input("Ingrese el monto maximo ha pagar: "))
              if p_min >= 0 and p_min <= p_max:
                 busqueda_de_precio(p_min, p_max)
+                break
              else:
                      print("El minimo debe ser mayor o igual a 0 y menor que el maximo")
          except ValueError:
@@ -218,6 +219,8 @@ while True:
             print("Poder invalido")
         elif not agregar_hechizo_rareza(rareza):
             print("Rareza invalida")
+        elif agregar_hechizo_es_prohibido(es_prohibido) is None:
+            print(("Debe ingresar s o n"))
         elif not agregar_hechizo_creador(creador):
             print("Creador invalido")
         elif not agregar_hechizo_stock(stock_nuevo):
@@ -225,7 +228,7 @@ while True:
         else:
             es_prohibido_bool = agregar_hechizo_es_prohibido(es_prohibido)
             if agregar_hechizo_completo(codigo, nombre, escuela , poder, rareza, es_prohibido,creador, nuevo_precio, stock_nuevo):
-             print("Hechizo agregado")   # ← faltaba esto
+             print("Hechizo agregado") 
             else:
              print("El código ya existe")
 
