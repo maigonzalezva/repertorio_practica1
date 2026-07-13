@@ -169,21 +169,22 @@ while True:
         pergaminos_escuela(escuela)
 
     elif opcion == 2:
-        try:
-            p_min = int(input("Ingrese el monto minimo ha pagar: "))
-            p_max = int(input("Ingrese el monto maximo ha pagar: "))
-            if p_min >= 0 and p_min <= p_max:
-             busqueda_de_precio(p_min, p_max)
-            else:
-                print("El minimo debe ser mayor o igual a 0 y menor que el maximo")
-        except ValueError:
-            print("Ingrese un numero entero")
+     while True:
+         try:
+             p_min = int(input("Ingrese el monto minimo ha pagar: "))
+             p_max = int(input("Ingrese el monto maximo ha pagar: "))
+             if p_min >= 0 and p_min <= p_max:
+                busqueda_de_precio(p_min, p_max)
+             else:
+                     print("El minimo debe ser mayor o igual a 0 y menor que el maximo")
+         except ValueError:
+                  print("Ingrese un numero entero")
 
     elif opcion == 3:
         while True:
-            codigo = input("Ingrese el codigo del hechizo")
+            codigo = input("Ingrese el codigo del hechizo: ")
             try:
-             nuevo_precio = int(input("Ingrese el precio nuevo"))
+             nuevo_precio = int(input("Ingrese el precio nuevo: "))
             except ValueError:
                 print("Ingrese un numero entero")
             
@@ -223,8 +224,10 @@ while True:
             print("Stock invalido")
         else:
             es_prohibido_bool = agregar_hechizo_es_prohibido(es_prohibido)
-            agregar_hechizo_completo(codigo, nombre, escuela , poder, rareza, es_prohibido,creador, nuevo_precio, stock_nuevo)
-
+            if agregar_hechizo_completo(codigo, nombre, escuela , poder, rareza, es_prohibido,creador, nuevo_precio, stock_nuevo):
+             print("Hechizo agregado")   # ← faltaba esto
+            else:
+             print("El código ya existe")
 
 
     elif opcion == 5:
