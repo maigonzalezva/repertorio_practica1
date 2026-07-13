@@ -6,7 +6,8 @@ hechizos = {
     'H002': ['Escudo de Escarcha', 'elemental', 3, 'C', False, 'Dama Fenwick'],
     'H003': ['Rayo Astral', 'arcana', 7, 'R', False, 'Magíster Orin'],
     'H004': ['Cadena de Almas', 'oscura', 9, 'L', True, 'El Innombrable'],
-    'H005': ['Portal Menor', 'arcana', 4, 'R', False, 'Selene Valdour'],     'H006': ['Toque Vampírico', 'oscura', 6, 'R', True, 'Mordath'],
+    'H005': ['Portal Menor', 'arcana', 4, 'R', False, 'Selene Valdour'],     
+    'H006': ['Toque Vampírico', 'oscura', 6, 'R', True, 'Mordath'],
 }
 
 #Reservas= Precio, stock
@@ -31,13 +32,17 @@ def mostrar_menu():
             =====================================
             ''')
 
-def leer_opcion(opcion):
+def leer_opcion():
     try:
         opcion = int(input("Ingrese su opcion: "))
-        if opcion <= 0 or opcion > 6:
+        if 1<= opcion <= 6:
+            return opcion
+        else: 
             print("Ingrese un numero entre el 1 y el 6")
+            return False
     except ValueError:
         print("Ingrese un numero")
+        return False
 
 
 def pergaminos_escuela(escuela):
@@ -156,8 +161,9 @@ def eliminar_hechizo(codigo):
 
 while True:
     mostrar_menu()
-    opcion = leer_opcion
-
+    opcion = leer_opcion()
+    if not opcion:
+        continue
     if opcion == 1:
         escuela = input("Ingrese el nombre de la escuela (elemental, arcana u oscura): ")
         pergaminos_escuela(escuela)
@@ -207,18 +213,25 @@ while True:
             print("Nombre invalido")
         elif not agregar_hechizo_nombre_escuela(escuela):
             print("Escuela invalida")
-        else: 
-            es_prohibido = agregar_hechizo_es_prohibido(es_prohibido)
-            if agregar_hechizo_completo(codigo, nombre, escuela , poder, rareza, es_prohibido,creador, nuevo_precio, stock_nuevo):
-               print("Hechizo agregado")
-            else: 
-                print("El codigo ya existe")
+        elif not agregar_hechizo_poder(int(poder)):
+            print("Poder invalido")
+        elif not agregar_hechizo_rareza(rareza):
+            print("Rareza invalida")
+        elif not agregar_hechizo_creador(creador):
+            print("Creador invalido")
+        elif not agregar_hechizo_stock(stock_nuevo):
+            print("Stock invalido")
+        else:
+            es_prohibido_bool = agregar_hechizo_es_prohibido(es_prohibido)
+            agregar_hechizo_completo(codigo, nombre, escuela , poder, rareza, es_prohibido,creador, nuevo_precio, stock_nuevo)
+
+
 
     elif opcion == 5:
         codigo = input("Ingrese el codigo que desea eliminar: ")
         if eliminar_hechizo(codigo):
             print("Hechizo eliminado")
-        else:("El codigo no existe")
-    else:
+        else: print("El codigo no existe")
+    elif opcion == 6:
         print("El grimorio se cierra. Hasta pronto, aprendiz.")
         break
