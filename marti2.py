@@ -31,6 +31,15 @@ def mostrar_menu():
             =====================================
             ''')
 
+def leer_opcion(opcion):
+    try:
+        opcion = int(input("Ingrese su opcion: "))
+        if opcion <= 0 or opcion > 6:
+            print("Ingrese un numero entre el 1 y el 6")
+    except ValueError:
+        print("Ingrese un numero")
+
+
 def pergaminos_escuela(escuela):
    total_pergaminos = 0
    for codigo, datos in hechizos.items():
@@ -138,9 +147,78 @@ def agregar_hechizo_completo(codigo, nombre, escuela , poder, rareza, es_prohibi
     return True
 
 def eliminar_hechizo(codigo):
-    if buscar_codigo == True:
-        reservas.pop(codigo)
-        hechizos.pop(codigo)
+    if buscar_codigo(codigo.upper()):
+        reservas.pop(codigo.upper())
+        hechizos.pop(codigo.upper())
         return True
     else:
         return False
+
+while True:
+    mostrar_menu()
+    opcion = leer_opcion
+
+    if opcion == 1:
+        escuela = input("Ingrese el nombre de la escuela (elemental, arcana u oscura): ")
+        pergaminos_escuela(escuela)
+
+    elif opcion == 2:
+        try:
+            p_min = int(input("Ingrese el monto minimo ha pagar: "))
+            p_max = int(input("Ingrese el monto maximo ha pagar: "))
+            if p_min >= 0 and p_min <= p_max:
+             busqueda_de_precio(p_min, p_max)
+            else:
+                print("El minimo debe ser mayor o igual a 0 y menor que el maximo")
+        except ValueError:
+            print("Ingrese un numero entero")
+
+    elif opcion == 3:
+        while True:
+            codigo = input("Ingrese el codigo del hechizo")
+            try:
+             nuevo_precio = int(input("Ingrese el precio nuevo"))
+            except ValueError:
+                print("Ingrese un numero entero")
+            
+            if actualizar_precio(codigo, nuevo_precio):
+                print("Precio actualizado")
+            else:
+                print("El codigo no existe")
+
+            respuesta = input("¿Desea actualizar otro precio (s/n)?")
+            if respuesta == "n":
+                break
+
+    elif opcion == 4:
+        codigo = input("Ingrese código del hechizo: ")
+        nombre = input("Ingrese nombre: ")
+        escuela = input("Ingrese escuela: ")
+        poder = input("Ingrese poder: ")
+        rareza = input("Ingrese rareza: ")
+        es_prohibido = input("¿Es prohibido? (s/n): ")
+        creador = input("Ingrese creador: ")
+        nuevo_precio = input("Ingrese precio: ")
+        stock_nuevo = input("Ingrese stock: ")
+
+        if not agregar_hechizo_codigo(codigo):
+            print("Codigo invalido o ya existe")
+        elif not agregar_hechizo_nombre(nombre):
+            print("Nombre invalido")
+        elif not agregar_hechizo_nombre_escuela(escuela):
+            print("Escuela invalida")
+        else: 
+            es_prohibido = agregar_hechizo_es_prohibido(es_prohibido)
+            if agregar_hechizo_completo(codigo, nombre, escuela , poder, rareza, es_prohibido,creador, nuevo_precio, stock_nuevo):
+               print("Hechizo agregado")
+            else: 
+                print("El codigo ya existe")
+
+    elif opcion == 5:
+        codigo = input("Ingrese el codigo que desea eliminar: ")
+        if eliminar_hechizo(codigo):
+            print("Hechizo eliminado")
+        else:("El codigo no existe")
+    else:
+        print("El grimorio se cierra. Hasta pronto, aprendiz.")
+        break
